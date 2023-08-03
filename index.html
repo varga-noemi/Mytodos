@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Cormorant+Upright&display=swap');
+    </style>
+    <title>To-Do List</title>
+</head>
+<body>
+    <div class="banner"></div>
+    <header><h1>To-Do List</h1></header>
+    <main>
+        <div class="input-container">
+            <input type="text" id="description" placeholder="add new to-do...">
+            <i class="fa-solid fa-plus fa-1.5x" onclick="add()"></i>
+        </div>
+        <div class="todolist-container">
+            <div class="to-dos"></div>
+        </div>
+    </main>
+    <script>
+        const delIcon = `<i class="fa-regular fa-trash-can fa-2x" onclick="del(this)"></i>`
+        const checkIcon = (cls = '') => `<i class="fa-solid fa-check fa-2x ${cls}" onclick="mytoggle(this)"></i>`
+
+        const renderList = (array) => {
+
+            document.querySelector('.to-dos').innerHTML = ''
+            array.forEach(element => {
+                let classname1 = element.status ? 'done' : ''
+                let classname2 = element.status ? 'green' : ''
+                document.querySelector('.to-dos').innerHTML += `
+                <div class="todoitem" id=${element.id}>
+                    ${checkIcon(classname2)}
+                    <span class=${classname1}>${element.description}</span>
+                    ${delIcon}
+                </div>
+                `
+            })
+        }
+
+        let arr = localStorage.getItem('arr') ? JSON.parse(localStorage['arr']) : []
+
+        renderList(arr)
+
+        const add= () => {
+            let description = document.getElementById('description').value
+            //console.log(description)
+            if (description.length == 0) return
+            //console.log(new Date().getTime());
+            arr = [...arr, {id: new Date().getTime(), description: description, status: false}]
+            console.log(arr)
+            localStorage['arr'] = JSON.stringify(arr)
+            renderList(arr)
+        }
+
+        const del = (domobj) => {
+            let delID = domobj.parentNode.id
+            console.log(delID)
+            arr = arr.filter(obj=>obj.id!=delID)
+            renderList(arr)
+            localStorage['arr'] = JSON.stringify(arr)
+        }
+
+        const mytoggle = (domobj) => {
+            let delID = domobj.parentNode.id
+            arr.forEach(element => {
+                if(element.id==delID) element.status = !element.status
+            })
+            renderList(arr)
+            localStorage['arr'] = JSON.stringify(arr)
+        }
+    </script>
+</body>
+</html>

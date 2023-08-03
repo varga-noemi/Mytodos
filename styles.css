@@ -1,0 +1,85 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.banner {
+    height: 35vh;
+    background-image: linear-gradient(to right, rgba(153, 223, 245, 0.3), rgba(104, 231, 253, 0.3)), url(banner.png);
+    background-position: center;
+}
+
+header {
+    margin-top: -23vh;
+    color: white;
+    letter-spacing: 1rem;
+    font-size: 2.5vw;
+    text-shadow: 0 0 0.5rem rgba(38, 72, 100, 0.2);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+main {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.input-container {
+    margin-top: 4.5rem;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: 0 0 1rem rgba(38, 72, 100, 0.4);
+    border-radius: 10px;
+}
+
+#description {
+    width: 90%;
+    border: none;
+}
+
+#description:focus {
+    outline: none;
+    border-bottom: 1px solid rgb(167, 167, 167);
+}
+
+.fa-plus {
+    cursor: pointer;
+    color: rgb(38, 72, 100);
+    border: 1 px solid rgb(38, 72, 100);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.todolist-container {
+    margin-top: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 0 1rem rgba(38, 72, 100, 0.4);
+    padding: 1rem;
+    height: 50vh;
+    overflow: auto;
+}
+
+.todoitem {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid lightblue;
+}
+
+.fa-trash-can {
+    cursor: pointer;
+    color: red;
+}
+
+.fa-check {
+    cursor: pointer;
+}
+
+.green {
+    color: green;
+}
+
+.done {
+    text-decoration: line-through;
+}
